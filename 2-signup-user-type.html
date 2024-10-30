@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User Type</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: #E8F4F9;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .input {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            font-size: 1rem;
+        }
+        .submit-button {
+            background-color: #3490dc;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #2779bd;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .radio-option {
+            flex: 1;
+            text-align: center;
+        }
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+        .radio-option label {
+            display: inline-block;
+            padding: 0.75rem;
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .radio-option input[type="radio"]:checked + label {
+            background-color: #3490dc;
+            color: white;
+        }
+        #companyNameField {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="logo">
+                <svg width="150" height="50" viewBox="0 0 150 50">
+                    <path d="M20,25 C20,15 30,15 40,25 C50,35 60,35 60,25" stroke="#4299E1" stroke-width="4" fill="none" />
+                    <path d="M70,25 C70,15 80,15 90,25 C100,35 110,35 110,25" stroke="#FCD34D" stroke-width="4" fill="none" />
+                    <circle cx="40" cy="25" r="2" fill="#4A5568" />
+                    <circle cx="60" cy="25" r="2" fill="#4A5568" />
+                    <text x="10" y="45" font-size="14" font-weight="bold" fill="#4A5568">source coders</text>
+                </svg>
+            </div>
+            <h2 class="form-title">Select User Type</h2>
+            <form id="userTypeForm">
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="jobSeeker" name="userType" value="jobSeeker" checked>
+                        <label for="jobSeeker">Job Seeker</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="hiringCompany" name="userType" value="hiringCompany">
+                        <label for="hiringCompany">Hiring Company</label>
+                    </div>
+                </div>
+                <div id="companyNameField">
+                    <input type="text" class="input" id="companyName" placeholder="Company Name" required>
+                </div>
+                <button type="submit" class="submit-button">Continue</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const userTypeForm = document.getElementById('userTypeForm');
+        const companyNameField = document.getElementById('companyNameField');
+        const companyNameInput = document.getElementById('companyName');
+
+        document.querySelectorAll('input[name="userType"]').forEach((radio) => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'hiringCompany') {
+                    companyNameField.style.display = 'block';
+                    companyNameInput.required = true;
+                } else {
+                    companyNameField.style.display = 'none';
+                    companyNameInput.required = false;
+                }
+            });
+        });
+
+        userTypeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userType = document.querySelector('input[name="userType"]:checked').value;
+            const companyName = companyNameInput.value;
+            
+            console.log('User type:', userType);
+            if (userType === 'hiringCompany') {
+                console.log('Company name:', companyName);
+            }
+            
+            // Here you would typically send this data to your server or proceed to the next step
+            // For now, we'll just log it to the console
+        });
+    </script>
+</body>
+</html>

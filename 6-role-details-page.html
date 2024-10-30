@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Lead Role Details</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .page-container {
+            display: flex;
+            height: 100%;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #E8F4F9;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            margin-bottom: 2rem;
+        }
+        .menu-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 4px;
+            cursor: pointer;
+            color: black;
+            transition: background-color 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .menu-item.active, .menu-item:hover {
+            background-color: #3490dc;
+            color: white;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            flex: 0 0 15%;
+            background-color: #f5f5f5;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-left: 1rem;
+        }
+        .client-logo {
+            width: 8rem;
+            height: 4rem;
+            background-color: #FCD34D;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #4A5568;
+            font-weight: 600;
+        }
+        .content {
+            flex: 1;
+            overflow: auto;
+            padding: 1rem;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom-color: #3490dc;
+            color: #3490dc;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .editable {
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .question {
+            background-color: #f5f5f5;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .edit-button {
+            background-color: #3490dc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .add-question-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="sidebar">
+            <div class="logo">
+                <svg width="150" height="50" viewBox="0 0 150 50">
+                    <path d="M20,25 C20,15 30,15 40,25 C50,35 60,35 60,25" stroke="#4299E1" stroke-width="4" fill="none" />
+                    <path d="M70,25 C70,15 80,15 90,25 C100,35 110,35 110,25" stroke="#FCD34D" stroke-width="4" fill="none" />
+                    <circle cx="40" cy="25" r="2" fill="#4A5568" />
+                    <circle cx="60" cy="25" r="2" fill="#4A5568" />
+                    <text x="10" y="45" font-size="14" font-weight="bold" fill="#4A5568">source coders</text>
+                </svg>
+            </div>
+            <div class="menu-item">Create a new role</div>
+            <div class="menu-item">View open roles</div>
+            <div class="menu-item active">Tech Lead Role Details</div>
+            <div class="menu-item">View closed roles</div>
+            <div class="menu-item" style="margin-top: auto;">Account</div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1 class="title">Tech Lead Role Details</h1>
+                <div class="client-logo">Your Company Logo</div>
+            </div>
+            <div class="content">
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('importance-weights')">Importance Weights</div>
+                    <div class="tab" onclick="showTab('screening-questions')">Screening Questions</div>
+                    <div class="tab" onclick="showTab('revised-job-description')">Revised Job Description</div>
+                </div>
+                <div id="importance-weights" class="tab-content active">
+                    <table>
+                        <tr>
+                            <th>Importance Score</th>
+                            <th>Requirement Name</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><span class="editable" onclick="makeEditable(this)">9</span></td>
+                            <td>Kubernetes Expertise</td>
+                            <td>Must be a power user of Kubernetes in microservices-based architectures. Extensive experience with containers and Kubernetes in public cloud environments is crucial.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="editable" onclick="makeEditable(this)">9</span></td>
+                            <td>Microservices & API Design</td>
+                            <td>Deep understanding of microservices architecture and RESTful APIs, with experience in API-first development. Ability to lead and design distributed systems.</td>
+                        </tr>
+                        <!-- ... (other rows omitted for brevity) ... -->
+                        <tr>
+                            <td><span class="editable" onclick="makeEditable(this)">9</span></td>
+                            <td>Cultural Fit</td>
+                            <td>Ability to work effectively in a fully remote, fast-paced, and distributed environment with minimal documentation. Must be self-motivated, results-oriented, and comfortable with flexible working hours. Strong communication skills are essential for collaborating with a global team. Adaptability to a start-up culture with quarterly face-to-face meetings (US team) and annual global team meetups.</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="screening-questions" class="tab-content">
+                    <div class="question">
+                        <p>Can you describe your experience with Kubernetes in microservices-based architectures? Please provide a specific example of a complex Kubernetes deployment you've managed, including any challenges you faced and how you overcame them.</p>
+                        <button class="edit-button" onclick="editQuestion(this)">Edit</button>
+                    </div>
+                    <div class="question">
+                        <p>Walk me through your approach to designing and implementing a RESTful API for a distributed system. How do you ensure scalability and maintainability in your API design?</p>
+                        <button class="edit-button" onclick="editQuestion(this)">Edit</button>
+                    </div>
+                    <!-- ... (other questions omitted for brevity) ... -->
+                    <div class="question">
+                        <p>Our company operates in a fast-paced, fully remote environment with minimal documentation. How do you ensure effective communication and maintain productivity in such a setting? Describe your ideal company culture and how you adapt to a startup environment with flexible working hours and distributed teams.</p>
+                        <button class="edit-button" onclick="editQuestion(this)">Edit</button>
+                    </div>
+                    <button class="add-question-button" onclick="addQuestion()">Add Question</button>
+                </div>
+                <div id="revised-job-description" class="tab-content">
+                    <h2>Tech Lead - Cloud Native Infrastructure</h2>
+                    <p>We are seeking an experienced and innovative Tech Lead to join our rapidly growing team. As a Tech Lead, you will play a crucial role in designing, implementing, and maintaining our cloud-native infrastructure and distributed systems.</p>
+                    
+                    <h3>Key Responsibilities:</h3>
+                    <ul>
+                        <li>Lead the design and implementation of scalable, resilient microservices architectures</li>
+                        <li>Spearhead Kubernetes-based deployments and manage complex container orchestration</li>
+                        <li>Develop and maintain Infrastructure as Code using Terraform and other modern IaC tools</li>
+                        <li>Optimize database performance and ensure data integrity across various database systems</li>
+                        <li>Mentor team members and foster a culture of technical excellence and innovation</li>
+                        <li>Collaborate with cross-functional teams to deliver high-quality software solutions</li>
+                    </ul>
+
+                    <h3>Required Skills and Experience:</h3>
+                    <ul>
+                        <li>8+ years of software development experience, with 5+ years focusing on distributed systems</li>
+                        <li>Expert-level knowledge of Kubernetes and microservices architectures</li>
+                        <li>Strong proficiency in Go, with experience in other languages such as Python, Java, or Rust</li>
+                        <li>Extensive experience with public cloud platforms (GCP, AWS, or Azure)</li>
+                        <li>Deep understanding of RESTful API design and implementation</li>
+                        <li>Proven track record of leading technical projects and mentoring team members</li>
+                    </ul>
+
+                    <p>If you're passionate about cutting-edge technology and thrive in a fast-paced, remote-first environment, we want to hear from you. Join us in shaping the future of cloud-native infrastructure and make a significant impact in a rapidly growing company.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function makeEditable(element) {
+            const currentValue = element.textContent;
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.value = currentValue;
+            input.style.width = '30px';
+            input.addEventListener('blur', function() {
+                element.textContent = this.value;
+            });
+            element.textContent = '';
+            element.appendChild(input);
+            input.focus();
+        }
+
+        function editQuestion(button) {
+            const questionDiv = button.parentElement;
+            const questionText = questionDiv.querySelector('p').textContent;
+            const textarea = document.createElement('textarea');
+            textarea.value = questionText;
+            textarea.style.width = '100%';
+            textarea.style.minHeight = '100px';
+            textarea.style.marginBottom = '10px';
+            
+            const saveButton = document.createElement('button');
+            saveButton.textContent = 'Save';
+            saveButton.className = 'edit-button';
+            saveButton.onclick = function() {
+                questionDiv.querySelector('p').textContent = textarea.value;
+                questionDiv.innerHTML = `<p>${textarea.value}</p><button class="edit-button" onclick="editQuestion(this)">Edit</button>`;
+            };
+            
+            questionDiv.innerHTML = '';
+            questionDiv.appendChild(textarea);
+            questionDiv.appendChild(saveButton);
+        }
+
+        function addQuestion() {
+            const newQuestion = document.createElement('div');
+            newQuestion.className = 'question';
+            newQuestion.innerHTML = `
+                <textarea style="width: 100%; min-height: 100px; margin-bottom: 10px;"></textarea>
+                <button class="edit-button" onclick="saveNewQuestion(this)">Save</button>
+            `;
+            document.querySelector('#screening-questions').insertBefore(newQuestion, document.querySelector('.add-question-button'));
+        }
+
+        function saveNewQuestion(button) {
+            const questionDiv = button.parentElement;
+            const questionText = questionDiv.querySelector('textarea').value;
+            questionDiv.innerHTML = `<p>${questionText}</p><button class="edit-button" onclick="editQuestion(this)">Edit</button>`;
+        }
+    </script>
+</body>
+</html>

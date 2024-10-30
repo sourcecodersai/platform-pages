@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Role</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .page-container {
+            display: flex;
+            height: 100%;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #E8F4F9;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            margin-bottom: 2rem;
+        }
+        .menu-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 4px;
+            cursor: pointer;
+            color: black;
+            transition: background-color 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .menu-item.active, .menu-item:hover {
+            background-color: #3490dc;
+            color: white;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            flex: 0 0 15%;
+            background-color: #f5f5f5;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-left: 1rem;
+        }
+        .client-logo {
+            width: 8rem;
+            height: 4rem;
+            background-color: #FCD34D;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #4A5568;
+            font-weight: 600;
+        }
+        .content {
+            flex: 1;
+            overflow: auto;
+            padding: 1rem;
+        }
+        .form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .input, .textarea, .select {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+        .textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+        }
+        .question {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c5282;
+        }
+        .submit-button, .add-manager-button {
+            background-color: #3490dc;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .add-manager-button {
+            background-color: #4CAF50;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .modal-overlay, .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content, .popup-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .modal-button, .close-popup {
+            background-color: #3490dc;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .close-popup {
+            float: right;
+            font-size: 1.5rem;
+            background: none;
+            color: #4A5568;
+            margin: 0;
+            padding: 0;
+        }
+        .file-upload {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        .file-upload label {
+            background-color: #3490dc;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        #fileNameDisplay {
+            font-size: 0.9rem;
+            color: #4A5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="sidebar">
+            <div class="logo">
+                <svg width="150" height="50" viewBox="0 0 150 50">
+                    <path d="M20,25 C20,15 30,15 40,25 C50,35 60,35 60,25" stroke="#4299E1" stroke-width="4" fill="none" />
+                    <path d="M70,25 C70,15 80,15 90,25 C100,35 110,35 110,25" stroke="#FCD34D" stroke-width="4" fill="none" />
+                    <circle cx="40" cy="25" r="2" fill="#4A5568" />
+                    <circle cx="60" cy="25" r="2" fill="#4A5568" />
+                    <text x="10" y="45" font-size="14" font-weight="bold" fill="#4A5568">source coders</text>
+                </svg>
+            </div>
+            <div class="menu-item active">Create a new role</div>
+            <div class="menu-item">View open roles</div>
+            <div class="menu-item">View closed roles</div>
+            <div class="menu-item" style="margin-top: auto;">Account</div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1 class="title">Create a New Role</h1>
+                <div class="client-logo">Your Company Logo</div>
+            </div>
+            <div class="content">
+                <form class="form" id="newRoleForm">
+                    <p class="question">Who is the hiring manager for this role?</p>
+                    <select class="select" id="hiringManagerSelect" required>
+                        <option value="">Select a hiring manager</option>
+                        <option value="1">John Doe</option>
+                        <option value="2">Jane Smith</option>
+                    </select>
+                    <button type="button" class="add-manager-button" onclick="openAddManagerPopup()">Add New Hiring Manager</button>
+                    
+                    <label class="label">Job Description:</label>
+                    <textarea class="textarea" id="jobDescription" placeholder="Copy and paste job description here"></textarea>
+                    <div class="file-upload">
+                        <label for="jobDescriptionFile">Upload File</label>
+                        <input type="file" id="jobDescriptionFile" accept=".txt,.pdf,.doc,.docx">
+                        <span id="fileNameDisplay"></span>
+                    </div>
+                    <button type="submit" class="submit-button">Submit New Role</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Hiring Manager Popup -->
+    <div id="addManagerPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closeAddManagerPopup()">&times;</span>
+            <h2>Add New Hiring Manager</h2>
+            <form id="addManagerForm">
+                <label class="label">First Name:</label>
+                <input type="text" class="input" id="newManagerFirstName" required>
+                <label class="label">Last Name:</label>
+                <input type="text" class="input" id="newManagerLastName" required>
+                <label class="label">Email Address:</label>
+                <input type="email" class="input" id="newManagerEmail" required>
+                <button type="submit" class="submit-button">Add Manager</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal-content">
+            <h2 style="color: #2c5282; margin-bottom: 1rem;">Confirmation</h2>
+            <p id="confirmationMessage"></p>
+            <button class="modal-button" onclick="closeModal()">Close</button>
+            <button class="modal-button" onclick="startOnboarding()">Start Onboarding Now</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('newRoleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var hiringManager = document.getElementById('hiringManagerSelect').options[document.getElementById('hiringManagerSelect').selectedIndex].text;
+            var jobDescription = document.getElementById('jobDescription').value;
+            var fileName = document.getElementById('fileNameDisplay').textContent;
+            
+            console.log("Form submitted", { hiringManager, jobDescription, fileName });
+            
+            document.getElementById('confirmationMessage').textContent = "A new role has been created with " + hiringManager + " as the hiring manager. An email invite for the onboarding call has been sent.";
+            document.getElementById('confirmationModal').style.display = 'flex';
+        });
+
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+
+        function startOnboarding() {
+            console.log("Starting onboarding process");
+            closeModal();
+            // Additional onboarding logic would go here
+        }
+
+        function openAddManagerPopup() {
+            document.getElementById('addManagerPopup').style.display = 'flex';
+        }
+
+        function closeAddManagerPopup() {
+            document.getElementById('addManagerPopup').style.display = 'none';
+        }
+
+        document.getElementById('addManagerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var firstName = document.getElementById('newManagerFirstName').value;
+            var lastName = document.getElementById('newManagerLastName').value;
+            var email = document.getElementById('newManagerEmail').value;
+            
+            console.log("New manager added", { firstName, lastName, email });
+            
+            // Here you would typically send this data to your backend
+            // For now, we'll just add it to the select dropdown
+            var select = document.getElementById('hiringManagerSelect');
+            var newOption = document.createElement('option');
+            newOption.text = firstName + ' ' + lastName;
+            newOption.value = email;
+            select.add(newOption);
+            
+            closeAddManagerPopup();
+        });
+
+        document.getElementById('jobDescriptionFile').addEventListener('change', function(e) {
+            var fileName = e.target.file[0].name;
+            document.getElementById('fileNameDisplay').textContent = fileName;
+        });
+    </script>
+</body>
+</html>

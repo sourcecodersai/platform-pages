@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: #E8F4F9;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .input {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            font-size: 1rem;
+        }
+        .submit-button {
+            background-color: #3490dc;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #2779bd;
+        }
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .social-button {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        .social-button:hover {
+            background-color: #f3f4f6;
+        }
+        .social-button + .social-button {
+            margin-left: 0.5rem;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .divider span {
+            padding: 0 0.5rem;
+            color: #6b7280;
+        }
+        .toggle-form {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .toggle-form a {
+            color: #3490dc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="logo">
+                <svg width="150" height="50" viewBox="0 0 150 50">
+                    <path d="M20,25 C20,15 30,15 40,25 C50,35 60,35 60,25" stroke="#4299E1" stroke-width="4" fill="none" />
+                    <path d="M70,25 C70,15 80,15 90,25 C100,35 110,35 110,25" stroke="#FCD34D" stroke-width="4" fill="none" />
+                    <circle cx="40" cy="25" r="2" fill="#4A5568" />
+                    <circle cx="60" cy="25" r="2" fill="#4A5568" />
+                    <text x="10" y="45" font-size="14" font-weight="bold" fill="#4A5568">source coders</text>
+                </svg>
+            </div>
+            <h2 class="form-title">Sign Up</h2>
+            <div class="social-login">
+                <button class="social-button" onclick="socialSignup('google')">
+                    <img src="/api/placeholder/20/20" alt="Google" style="margin-right: 0.5rem;"/> Google
+                </button>
+                <button class="social-button" onclick="socialSignup('apple')">
+                    <img src="/api/placeholder/20/20" alt="Apple" style="margin-right: 0.5rem;"/> Apple
+                </button>
+            </div>
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            <form id="signupForm">
+                <input type="text" class="input" placeholder="Full Name" required>
+                <input type="email" class="input" placeholder="Email" required>
+                <input type="password" class="input" placeholder="Password" required>
+                <input type="password" class="input" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-button">Sign Up</button>
+            </form>
+            <div class="toggle-form">
+                <span>Already have an account?</span> <a href="index.html">Log In</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function socialSignup(provider) {
+            console.log(`Signing up with ${provider}`);
+            // Implement social signup logic here
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullName = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+            const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                return;
+            }
+            
+            console.log('Signing up with', { fullName, email, password });
+            // Implement signup logic here
+        });
+    </script>
+</body>
+</html>

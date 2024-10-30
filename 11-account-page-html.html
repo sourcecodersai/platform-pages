@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Source Coders</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .page-container {
+            display: flex;
+            height: 100%;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #E8F4F9;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            margin-bottom: 2rem;
+        }
+        .menu-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 4px;
+            cursor: pointer;
+            color: black;
+            transition: background-color 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .menu-item.active, .menu-item:hover {
+            background-color: #3490dc;
+            color: white;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            flex: 0 0 15%;
+            background-color: #f5f5f5;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-left: 1rem;
+        }
+        .client-logo {
+            width: 8rem;
+            height: 4rem;
+            background-color: #FCD34D;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #4A5568;
+            font-weight: 600;
+        }
+        .content {
+            flex: 1;
+            overflow: auto;
+            padding: 1rem;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom-color: #3490dc;
+            color: #3490dc;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .team-member, .subscription-option {
+            margin-bottom: 1rem;
+        }
+        .button {
+            background-color: #3490dc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button.danger {
+            background-color: #e53e3e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="sidebar">
+            <div class="logo">
+                <svg width="150" height="50" viewBox="0 0 150 50">
+                    <path d="M20,25 C20,15 30,15 40,25 C50,35 60,35 60,25" stroke="#4299E1" stroke-width="4" fill="none" />
+                    <path d="M70,25 C70,15 80,15 90,25 C100,35 110,35 110,25" stroke="#FCD34D" stroke-width="4" fill="none" />
+                    <circle cx="40" cy="25" r="2" fill="#4A5568" />
+                    <circle cx="60" cy="25" r="2" fill="#4A5568" />
+                    <text x="10" y="45" font-size="14" font-weight="bold" fill="#4A5568">source coders</text>
+                </svg>
+            </div>
+            <div class="menu-item">Create a new role</div>
+            <div class="menu-item">View open roles</div>
+            <div class="menu-item">View closed roles</div>
+            <div class="menu-item active" style="margin-top: auto;">Account</div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1 class="title">Account</h1>
+                <div class="client-logo">Your Company Logo</div>
+            </div>
+            <div class="content">
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('team')">Team</div>
+                    <div class="tab" onclick="showTab('subscription')">Subscription</div>
+                    <div class="tab" onclick="showTab('billing')">Billing</div>
+                </div>
+                <div id="team" class="tab-content active">
+                    <h2>Team Members</h2>
+                    <div class="team-member">
+                        <strong>Admin:</strong> John Doe - john.doe@example.com 
+                        <button class="button">Reassign Admin</button>
+                    </div>
+                    <h3>Hiring Managers:</h3>
+                    <div class="team-member">
+                        Jane Smith - jane.smith@example.com 
+                        <button class="button">Remove</button>
+                    </div>
+                    <div class="team-member">
+                        Mike Johnson - mike.johnson@example.com 
+                        <button class="button">Remove</button>
+                    </div>
+                    <div class="team-member">
+                        Sarah Williams - sarah.williams@example.com 
+                        <button class="button">Remove</button>
+                    </div>
+                    <div class="team-member">
+                        Tom Brown - tom.brown@example.com 
+                        <button class="button">Remove</button>
+                    </div>
+                </div>
+                <div id="subscription" class="tab-content">
+                    <h2>Subscription</h2>
+                    <p>You are currently subscribed to the <strong>Growth</strong> account</p>
+                    <h3>Options:</h3>
+                    <div class="subscription-option">
+                        <strong>Individual</strong> - best for companies needing to make a single hire
+                    </div>
+                    <div class="subscription-option">
+                        <strong>Growth</strong> - best for companies with fluctuating hiring needs
+                    </div>
+                    <div class="subscription-option">
+                        <strong>Enterprise</strong> - best for larger companies and corporations with constant hiring needs
+                    </div>
+                    <button class="button danger" style="margin-top: 1rem;">Delete this account</button>
+                </div>
+                <div id="billing" class="tab-content">
+                    <h2>Billing Information</h2>
+                    <p><strong>Card on file:</strong> VISA ending in 1234</p>
+                    <p><strong>Name on card:</strong> John Doe</p>
+                    <h3>Billing History</h3>
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td>May 1, 2023</td>
+                            <td>$5,000</td>
+                        </tr>
+                        <tr>
+                            <td>April 1, 2023</td>
+                            <td>$5,000</td>
+                        </tr>
+                        <tr>
+                            <td>March 1, 2023</td>
+                            <td>$5,000</td>
+                        </tr>
+                        <tr>
+                            <td>February 1, 2023</td>
+                            <td>$5,000</td>
+                        </tr>
+                        <tr>
+                            <td>January 1, 2023</td>
+                            <td>$5,000</td>
+                        </tr>
+                        <tr>
+                            <td>December 1, 2022</td>
+                            <td>$5,000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`.tab:nth-child(${['team', 'subscription', 'billing'].indexOf(tabName) + 1})`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
